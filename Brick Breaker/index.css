@@ -1,5 +1,14 @@
 #gameScreen {
   border: 1px solid black;
+  /* 
+  **When working with canvas, width and height must be set on the canvas element in the HTML file for functional size,
+    the the size of the canvas is set in styles it will only change the size of the canvas shown on the browser.
+
   width: 800px;
-  height: 600px;
+  height: 800px; 
+  */
+}
+
+img {
+  display: none;
 }

@@ -1,0 +1,23 @@
+{
+  "type": "module",
+  "name": "jsgames",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IsaacLSaunders/JsGames.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IsaacLSaunders/JsGames/issues"
+  },
+  "homepage": "https://github.com/IsaacLSaunders/JsGames#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
