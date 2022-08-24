@@ -1,5 +1,7 @@
 /** @type {HTMLCanvasElement} */
 
+//Partial movement (shaking) on the x & y axis
+
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
 
@@ -17,8 +19,13 @@ class Enemy {
     this.image.src = './assets/enemy1.png';
     this.spriteWidth = 293;
     this.spriteHeight = 155;
-    this.width = this.spriteWidth / 2.5;
-    this.height = this.spriteHeight / 2.5;
+    if (this.spriteWidth <= this.spriteHeight) {
+      this.width = (Math.random() * this.spriteWidth + 100) / 3;
+      this.height = (this.spriteHeight / this.spriteWidth) * this.width;
+    } else {
+      this.height = (Math.random() * this.spriteHeight + 100) / 3;
+      this.width = (this.spriteWidth / this.spriteHeight) * this.height;
+    }
     this.x = Math.random() * (canvas.width - this.width);
     this.y = Math.random() * (canvas.height - this.height);
     this.frame = 0;

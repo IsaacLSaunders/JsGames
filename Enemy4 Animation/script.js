@@ -1,6 +1,6 @@
 /** @type {HTMLCanvasElement} */
 
-//ENDLESS HORIZONTAL MOVEMENT WITH SIN WAVE PATTERN
+//VERTICAL AND HORIZONTAL MOVEMENT WITH SINE X COSINE WAVE PATTERNS FOR X & Y AXIS
 
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
@@ -8,7 +8,7 @@ const ctx = canvas.getContext('2d');
 const CANVAS_WIDTH = (canvas.width = 500);
 const CANVAS_HEIGHT = (canvas.height = 1000);
 
-const numberOfEnemies = 20;
+const numberOfEnemies = 5;
 const arrayOfEnemies = [];
 
 let gameFrame = 0;
@@ -16,10 +16,10 @@ let gameFrame = 0;
 class Enemy {
   constructor() {
     this.image = new Image();
-    this.image.src = './assets/enemy2.png';
+    this.image.src = './assets/enemy4.png';
     this.speed = Math.random() * 4 + 1;
-    this.spriteWidth = 266;
-    this.spriteHeight = 188;
+    this.spriteWidth = 213;
+    this.spriteHeight = 213;
     if (this.spriteWidth <= this.spriteHeight) {
       this.width = (Math.random() * this.spriteWidth + 100) / 3;
       this.height = (this.spriteHeight / this.spriteWidth) * this.width;
@@ -29,26 +29,26 @@ class Enemy {
     }
     this.x = Math.random() * (canvas.width - this.width);
     this.y = Math.random() * (canvas.height - this.height);
+    this.newX = Math.random() * (canvas.width - this.width);
+    this.newY = Math.random() * (canvas.height - this.height);
     this.frame = 0;
     this.flapSpeed = Math.floor(Math.random() * 5 + 1);
-    //research Math.sin to understand more about what this variable does and how it affects the animation
-    this.angle = 0;
-    //as angleSpeed increases and decreases, the speed of the wave decreases and increases respectively
-    this.angleSpeed = Math.random() * 0.1;
-    //as curve increases or decreases, the depth and height of the wave increases or decreases respectively
-    this.curve = Math.random() * 5 + 1;
+    this.interval = Math.floor(Math.random() * 200 + 50);
   }
 
   update() {
-    this.x -= this.speed;
+    if (gameFrame % this.interval === 0) {
+      this.newX = Math.random() * (canvas.width - this.width);
+      this.newY = Math.random() * (canvas.height - this.height);
+    }
 
-    //Math.sin returns a number between -1 and 1
-    //the animation imposed on the sprite along the y axis is manipulated my Math.sin
-    //Math.sin returns values from an incrementing source that plot out to a wave pattern
-    //research Math.sin more to understand what exactly this algo is doing
-    this.y += this.curve * Math.sin(this.angle);
-    this.angle += this.angleSpeed;
+    let dx = this.x - this.newX;
+    let dy = this.y - this.newY;
 
+    this.x -= dx / 50;
+    this.y -= dy / 50;
+    // this.x = 0;
+    // this.y = 0;
     //sets an endless loop, when sprite reaches left side of canvas, return the sprite to the right side of the canvas
     if (this.x + this.width < 0) this.x = canvas.width;
 
