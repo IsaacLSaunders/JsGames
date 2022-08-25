@@ -42,15 +42,13 @@ class Enemy {
       this.newY = Math.random() * (canvas.height - this.height);
     }
 
+    //dx & dy are the difference between the current location and the new location of the sprite
     let dx = this.x - this.newX;
     let dy = this.y - this.newY;
 
-    this.x -= dx / 50;
-    this.y -= dy / 50;
-    // this.x = 0;
-    // this.y = 0;
-    //sets an endless loop, when sprite reaches left side of canvas, return the sprite to the right side of the canvas
-    if (this.x + this.width < 0) this.x = canvas.width;
+    //reset x and y coordinates
+    this.x -= dx / 100;
+    this.y -= dy / 100;
 
     //slows down render rate of sprite frame based on flapSpeed property
     if (gameFrame % this.flapSpeed === 0) {

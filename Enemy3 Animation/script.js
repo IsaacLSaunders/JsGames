@@ -33,9 +33,10 @@ class Enemy {
     this.frame = 0;
     this.flapSpeed = Math.floor(Math.random() * 5 + 1);
     //determines starting position along the path
-    this.angle = Math.random() * 100;
+    this.angle = Math.random() * 10000;
     //determines the speed at which the sprites move along their path
     this.angleSpeed = Math.random() * 2 + 0.5;
+
     //determines radius of the circle the sprites move in
     // this.curve = Math.random() * 200 + 50;
   }
@@ -49,14 +50,11 @@ class Enemy {
       //change the first instance of canvas.width back to this.curve to create a more random pattern instead of a fixed path on both x&y axis
       (canvas.width / 2) * Math.sin((this.angle * Math.PI) / 200) +
       (canvas.width / 2 - this.width / 2);
-    //
     this.y =
       (canvas.height / 2) * Math.cos((this.angle * Math.PI) / 250) +
       (canvas.height / 2 - this.height / 2);
-    this.angle += this.angleSpeed;
 
-    //sets an endless loop, when sprite reaches left side of canvas, return the sprite to the right side of the canvas
-    if (this.x + this.width < 0) this.x = canvas.width;
+    this.angle += this.angleSpeed;
 
     //slows down render rate of sprite frame based on flapSpeed property
     if (gameFrame % this.flapSpeed === 0) {
